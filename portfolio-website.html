@@ -1,144 +1,381 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>山田太郎のポートフォリオ</title>
+    <title>M-YANAGISAWA ポートフォリオ</title>
     <style>
-        :root {
-            --primary-color: #4a90e2;
-            --secondary-color: #f5a623;
-            --background-color: #f8f9fa;
-            --text-color: #333;
-        }
-        
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--background-color);
-            margin: 0;
-            padding: 0;
-        }
-        
-        header {
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #f5a623;
+    --background-color: #f8f9fa;
+    --text-color: #333;
+    --timeline-color: #30363d;
+    --commit-color: #2ecc71;
+    --current-commit-color: #e74c3c;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    opacity: 1; 
+}
+
+/* Header Styles */
+header {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+header p {
+    margin: 0.5rem 0 0;
+    font-size: 1rem;
+}
+
+/* Navigation Styles */
+nav {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0.5rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Main Content Styles */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Project Grid Styles */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-card .content {
+    padding: 1rem;
+}
+
+.project-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+/* Skill Tags Styles */
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    gap: 0.5rem;
+}
+
+.skill-tag {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Timeline Styles */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 20px 0 20px 60px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: var(--timeline-color);
+    top: 0;
+    bottom: 0;
+    left: 30px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: var(--commit-color);
+    border: 4px solid var(--timeline-color);
+    left: -44px;
+    top: 0;
+    border-radius: 50%;
+}
+
+.timeline-item.current::after {
+    background-color: var(--current-commit-color);
+    box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.3);
+}
+
+.timeline-date {
+    position: absolute;
+    left: -130px;
+    top: 0;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.timeline-content {
+    padding: 20px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.timeline-content h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.timeline-content p {
+    margin-bottom: 0;
+    color: #666;
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+    
+    header p {
+        font-size: 0.9rem;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav ul li {
+        margin: 0.25rem;
+        width: 100%;
+        text-align: center;
+    }
+    
+    nav ul li a {
+        display: block;
+        padding: 0.75rem 1rem;
+    }
+    
+    .timeline {
+        padding-left: 30px;
+    }
+    
+    .timeline::before {
+        left: 15px;
+    }
+    
+    .timeline-item {
+        padding-left: 30px;
+    }
+    
+    .timeline-item::after {
+        left: -19px;
+        top: 20px;
+    }
+    
+    .timeline-date {
+        position: relative;
+        left: -30px;
+        top: 0;
+        margin-bottom: 10px;
+        font-size: 0.9em;
+    }
+    
+    .timeline-content {
+        padding: 15px;
+    }
+    
+    .timeline-content h3 {
+        font-size: 1.1em;
+    }
+    
+    .timeline-content p {
+        font-size: 0.9em;
+    }
+}
+
+ /* スプラッシュ画面のスタイル */
+ .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 1rem 0;
-        }
-        
-        nav {
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
             display: flex;
             justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+            opacity: 1; /* 初期状態で表示する */
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
         }
-        
-        nav ul li {
-            margin: 0 1rem;
-        }
-        
-        nav ul li a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: bold;
-            padding: 1rem 0;
-            display: inline-block;
-        }
-        
-        main {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .project-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .project-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .project-card .content {
-            padding: 1rem;
-        }
-        
-        .project-card h3 {
-            margin-top: 0;
-            margin-bottom: 0.5rem;
-        }
-        
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-            gap: 0.5rem;
-        }
-        
-        .skill-tag {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-        
-        footer {
-            background-color: var(--primary-color);
-            color: white;
+
+        .splash-content {
             text-align: center;
-            padding: 1rem 0;
-            margin-top: 2rem;
+            color: white;
         }
-        
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            nav ul li {
-                margin: 0.5rem 0;
+
+        .splash-logo {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .splash-tagline {
+            font-size: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out 0.3s forwards;
+        }
+
+        .splash-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        body.loaded {
+            opacity: 1;
+        }
+
+        .splash-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .splash-logo i {
+            margin-right: 0.5rem;
+            color: #f5a623;
+        }
+
+        .splash-logo span {
+            font-weight: bold;
+        }
+
     </style>
 </head>
 <body>
+
+    <!-- スプラッシュ画面 -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-content">
+            <div class="splash-logo">
+                <i class="fas fa-code"></i>
+                <span>M-YANAGISAWA</span>
+            </div>
+            <div class="splash-tagline">Portfolio</div>
+        </div>
+    </div>
+
     <header>
-        <h1>山田太郎のポートフォリオ</h1>
-        <p>Webデザイナー & フロントエンドデベロッパー</p>
+        <h1>M-YANAGISAWA's ポートフォリオ</h1>
+        <p>楽しいことをおもしろく</p>
     </header>
     
     <nav>
         <ul>
             <li><a href="#about">About</a></li>
+            <li><a href="#career">My Career</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#skills">Skills</a></li>
+            <li><a href="#Likes">Likes</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -146,48 +383,155 @@
     <main>
         <section id="about">
             <h2>About Me</h2>
-            <p>こんにちは、山田太郎です。クリエイティブなWebデザインとユーザーフレンドリーなフロントエンド開発に情熱を注いでいます。5年以上の経験を持ち、常に最新のトレンドとテクノロジーをフォローしています。</p>
+            <p>こんにちは、M-YANAGISAWAです。生まれ育ちは長野県、生息地も長野県です。</p>
+            <p>コーディングに情熱を注いでいます。</p>
+            <p>ここ最近は生成AIにお熱です。</p>
         </section>
+
+
+        <section id="career">
+            <h2>My Career</h2>
+            <div class="timeline">
+                <div class="timeline-item current">
+                    <div class="timeline-date">2023 - 現在</div>
+                    <div class="timeline-content">
+                        <h3>地元企業A</h3>
+                        <p>社内SE：従業員数約1000人</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2020 - 2023</div>
+                    <div class="timeline-content">
+                        <h3>地元企業E</h3>
+                        <p>社内SE：従業員数50人</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2014 - 2020</div>
+                    <div class="timeline-content">
+                        <h3>地元企業Y</h3>
+                        <p>生産技術として配属。 従業員300人程度</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2014</div>
+                    <div class="timeline-content">
+                        <h3>工科短期大学校 卒業</h3>
+                        <p>制御技術課</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <br>
         
         <section id="projects">
             <h2>My Projects</h2>
             <div class="project-grid">
                 <div class="project-card">
-                    <img src="/api/placeholder/400/320" alt="Project 1">
+                    <br>
+                    <div class="splash-logo">
+                        <i class="fas fa-code"></i>
+                    </div>
                     <div class="content">
-                        <h3>ECサイトリデザイン</h3>
-                        <p>大手ファッションブランドのECサイトをリデザインし、売上を30%向上させました。</p>
+                        <h3>受注出荷管理システムの作成</h3>
+                        <p>Excel ベースで受注出荷状況を管理していたものをC＃と SQLServer を用いて注残管理システムを作成</p>
                         <div class="skill-tags">
-                            <span class="skill-tag">HTML5</span>
-                            <span class="skill-tag">CSS3</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">Shopify</span>
+                            <span class="skill-tag">C#</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">WPF</span>
+                            <span class="skill-tag">Visual Studio</span>
+                            <span class="skill-tag">SQLServer2019</span>
+                            <span class="skill-tag">Windows11</span>
                         </div>
                     </div>
                 </div>
                 <div class="project-card">
-                    <img src="/api/placeholder/400/320" alt="Project 2">
                     <div class="content">
-                        <h3>レスポンシブWebアプリ</h3>
-                        <p>スマートフォンからデスクトップまで完全にレスポンシブなWebアプリケーションを開発しました。</p>
+                        <br>
+                        <div class="splash-logo">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        
+                        <h3>在庫管理システムの作成</h3>
+                        <p>・Excel ベースのためデータの保存忘れ＋ヒューマンエラーの多発 <br>
+                            ・複数人で同時入力が不可 <br><br>
+
+                            そこで SQLServer と C#を使用して、現在の在庫状況の確認、入出庫登録、棚卸登録、在庫製品状況の修正等の機能を追加して現場で管理が
+                            しやすいシステムを作成
+                        </p>
                         <div class="skill-tags">
-                            <span class="skill-tag">React</span>
-                            <span class="skill-tag">Redux</span>
-                            <span class="skill-tag">Responsive Design</span>
-                            <span class="skill-tag">API Integration</span>
+                            <span class="skill-tag">C#</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">WPF</span>
+                            <span class="skill-tag">Visual Studio</span>
+                            <span class="skill-tag">SQLServer2019</span>
+                            <span class="skill-tag">Windows11</span>
                         </div>
                     </div>
                 </div>
                 <div class="project-card">
-                    <img src="/api/placeholder/400/320" alt="Project 3">
                     <div class="content">
-                        <h3>ランディングページ最適化</h3>
-                        <p>A/Bテストを実施し、コンバージョン率を50%改善したランディングページを制作しました。</p>
+                        <br>
+                        <div class="splash-logo">
+                        <i class="fas fa-boxes"></i>
+                        </div>
+                        <h3>検査依頼システムの作成</h3>
+                        <p>・受注入力部署で入力したデータを紙で印刷して依頼していた<br>
+                            →既存の受注管理システムから検査に必要な受注データを自動で抽出、<br>その後検査依頼や検査後もシステム上で行えるように業務改善</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">C#</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">.Net Framework</span>
+                            <span class="skill-tag">Visual Studio</span>
+                            <span class="skill-tag">SQLServer2019</span>
+                            <span class="skill-tag">Windows11</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <br>
+                    <div class="splash-logo"><i class="far fa-window-restore"></i></div>
+                    <div class="content">
+                        <h3>イントラマートによる社内改善</h3>
+                        <p>イントラマートによるレガシーシステムの移行、社内改善システムの立案、設計、開発、保守</p>
                         <div class="skill-tags">
                             <span class="skill-tag">UI/UX Design</span>
-                            <span class="skill-tag">A/B Testing</span>
+                            <span class="skill-tag">Intra-Mart</span>
+                            <span class="skill-tag">html</span>
+                            <span class="skill-tag">css</span>
+                            <span class="skill-tag">javascript</span>
+                            <span class="skill-tag">postgreSQL</span>
+                            <span class="skill-tag">jQuery</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <br>
+                    <div class="splash-logo"><i class="fas fa-hands-helping"></i></div>
+                    <div class="content">
+                        <h3>社内ヘルプデスク業務</h3>
+                        <p>社内のPC周りの困りごとを即座に解決</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Windows</span>
+                            <span class="skill-tag">Network</span>
+                            <span class="skill-tag">Hardware</span>
+                            <span class="skill-tag">Communication skills</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <br>
+                    <div class="splash-logo"><i class="fas fa-user-friends"></i></div>
+                    <div class="content">
+                        <h3>個人開発</h3>
+                        <p>友人、家族の困りごと、要望を勉強がてらシステム作成</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">FastAPI</span>
                             <span class="skill-tag">Google Analytics</span>
-                            <span class="skill-tag">Conversion Optimization</span>
+                            <span class="skill-tag">Google Apps Script</span>
+                            <span class="skill-tag">VBA</span>
                         </div>
                     </div>
                 </div>
@@ -196,28 +540,64 @@
         
         <section id="skills">
             <h2>My Skills</h2>
+            <h3>Experience</h3>
+        
             <ul>
-                <li>HTML5 / CSS3</li>
-                <li>JavaScript / React</li>
-                <li>Responsive Web Design</li>
-                <li>User Interface Design</li>
-                <li>Adobe Creative Suite</li>
-                <li>Version Control (Git)</li>
+                <li>C# / WindowsForm、WPF、Xamnarin</li>
+                <li>HTML / CSS / js</li>
+                <li>SQLServer</li>
+                <li>SQLite</li>
+                <li>postgreSQL</li>
+                <li>Python</li>
+                <li>Google Apps Script</li>
+                <li>VBA</li>
+            </ul>
+
+            <h3>Some experience</h3>
+            <ul>
+                <li>Git</li>
+                <li>GitHub</li>
+                <li>VPS</li>
+                <li>Node.js</li>
+                <li>React</li>
+                <li>FastAPI</li>
+                <li>Ubuntu</li>
+                <li>Linux</li>
+            </ul>
+        </section>
+
+        <section id="Likes">
+            <h2>Likes</h2>
+            <ul>
+                <li>筋トレ</li>
+                <li>サウナ</li>
+                <li>釣り</li>
+                <li>映画</li>
+                <li>ごはん</li>
+                <li>盆栽鯖</li>
+                <li>クラウド盆栽鯖</li>
             </ul>
         </section>
         
         <section id="contact">
             <h2>Contact Me</h2>
-            <p>お問い合わせやお仕事のご相談は以下のメールアドレスまでお気軽にどうぞ。</p>
-            <p>Email: yamada@example.com</p>
+            <p>お問い合わせやお仕事のご相談は以下のX(旧Twitter)までお気軽にどうぞ。</p>
+            <div class="project-card" style="width: 50%;">
+                    <a class="twitter-timeline" href="https://twitter.com/mune70856689?ref_src=twsrc%5Etfw">Tweets by mune70856689</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
         </section>
     </main>
     
     <footer>
-        <p>&copy; 2024 山田太郎のポートフォリオ. All rights reserved.</p>
+        <p>&copy; 2024 M-YANAGISAWA ポートフォリオ. All rights reserved.</p>
     </footer>
 
+
     <script>
+
+    // スプラッシュ画面を即座に表示
+    document.getElementById('splashScreen').style.display = 'flex';
+
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('nav a');
             
@@ -233,6 +613,15 @@
                     });
                 });
             });
+            // スプラッシュ画面の処理
+            setTimeout(function() {
+                    var splashScreen = document.getElementById('splashScreen');
+                    splashScreen.classList.add('hidden');
+                    setTimeout(function() {
+                        splashScreen.style.display = 'none';
+                    }, 500); // トランジション完了後に完全に非表示にする
+                }, 2500); // スプラッシュ画面を2.5秒間表示
+
         });
     </script>
 </body>
